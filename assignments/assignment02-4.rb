@@ -13,11 +13,8 @@ require 'date'
 filename = "assignment02-input.csv"
 transactions = Array.new
 balance = 0.0
-contents = File.read(filename)
 daily_totals = {}
-
-
-
+contents = File.read(filename)
 
 def create_transaction(date,payee,amount,type)
   {date: date, payee: payee, amount: amount, type: type}
@@ -132,7 +129,7 @@ end
 # oddly on both windows and Mac I could not create an array from the CSV with
 # default ^M EOL so I convert to \n and then split.
 contents.gsub!(/\x0D/,'\n')
-records = contents.split('\n')
+records = contents.split("\n")
 
 
 # not using CSV module - skip the header record
