@@ -39,8 +39,8 @@ class BankAccount
     transactions.sort_by! {|item| Date.strptime(item.date,"%m/%d/%Y")}
     
     # calculate end balance
-    self.deposits.each {|d| @deposit_total += d.amount}
-    self.withdrawals.each {|w| @withdrawal_total -= w.amount}
+    @withdrawal_total = self.withdrawals.inject(0) { |sum,w | sum += w.amount  }
+    @deposit_total = self.deposits.inject(0) {|sum, d| sum += d.amount }
     @end_balance = @deposit_total + @withdrawal_total
   end
   
